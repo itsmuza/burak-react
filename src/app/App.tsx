@@ -2,41 +2,45 @@ import React from "react";
 import "../css/app.css";
 import { Box, Button, Stack, Container, Typography } from "@mui/material";
 import { Link, Route, Switch } from "react-router-dom";
-import { Users } from "./MaterialTheme/screens/Users";
-import { About } from "./MaterialTheme/screens/About";
+import { HomePage } from "./MaterialTheme/screens/homePage";
+import { ProductsPage } from "./MaterialTheme/screens/productsPage";
+import { OrdersPage } from "./MaterialTheme/screens/ordersPage";
+import { UserPage } from "./MaterialTheme/screens/userPage";
 
 function App() {
   return (
     <div>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">HomePage</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/products">ProductsPage</Link>
         </li>
         <li>
-          <Link to="/users">Users</Link>
+          <Link to="/orders">OrdersPage</Link>
+        </li>
+        <li>
+          <Link to="/member-page">UserPage</Link>
         </li>
       </ul>
 
       <Switch>
-        <Route path="/about">
-          <About />
+        <Route path="/products">
+          <ProductsPage />
         </Route>
-        <Route path="/users">
-          <Users />
+        <Route path="/orders">
+          <OrdersPage />
+        </Route>
+        <Route path="/member-page">
+          <UserPage />
         </Route>
         <Route path="/">
-          <Home />
+          <HomePage />
         </Route>
       </Switch>
     </div>
   );
-}
-
-function Home() {
-  return <Container>Home</Container>;
 }
 
 export default App;
