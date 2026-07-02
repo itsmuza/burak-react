@@ -17,15 +17,15 @@ export default function Footer() {
   return (
     <Footers>
       <Container>
-        <Stack direction={"row"} sx={{ mt: "94px" }}>
-          <Stack direction={"column"} style={{ width: "340px" }}>
+        <Stack flexDirection={"row"} sx={{ mt: "94px" }}>
+          <Stack flexDirection={"column"} style={{ width: "340px" }}>
             <Box>
-              <img width={"100px"} src={"/icons/burak.svg"} />
+              <img width={"100px"} src={"/icons/bumarak.svg"} />
             </Box>
             <Box className={"foot-desc-txt"}>
               Focusing on the gourmet Turkish breakfast as well as the youth
-              society, CZN Burak Gurme aims to bring Turkish cuisine back. CZN
-              Burak Gurme creates an illusion with its cuisine.
+              society, ZEN Bumarak Gurme aims to bring Turkish cuisine back. ZEN
+              Bumarak Gurme creates an illusion with its cuisine.
             </Box>
             <Box className="sns-context">
               <img src={"/icons/facebook.svg"} />
@@ -34,10 +34,10 @@ export default function Footer() {
               <img src={"/icons/youtube.svg"} />
             </Box>
           </Stack>
-          <Stack sx={{ ml: "288px" }} direction={"row"}>
+          <Stack sx={{ ml: "288px" }} flexDirection={"row"}>
             <Stack>
               <Box>
-                <Box className={"foot-category-title"}>Sections</Box>
+                <Box className={"foot-category-title"}>Bo'limlar</Box>
                 <Box className={"foot-category-link"}>
                   <Link to="/">Home</Link>
                   <Link to="/products">Products</Link>
@@ -50,14 +50,12 @@ export default function Footer() {
               <Box>
                 <Box className={"foot-category-title"}>Find us</Box>
                 <Box
-                  sx={{
-                    mt: "20px",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                  }}
+                  flexDirection={"column"}
+                  sx={{ mt: "20px" }}
                   className={"foot-category-link"}
+                  justifyContent={"space-between"}
                 >
-                  <Box sx={{ flexDirection: "column" }} className={"find-us"}>
+                  <Box flexDirection={"row"} className={"find-us"}>
                     <span>L.</span>
                     <div>Downtown, Dubai</div>
                   </Box>
