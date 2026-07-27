@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
 import ProductsPage from ".";
 import { useHistory } from "react-router-dom";
+import { CartItem } from "../../../lib/types/search";
 
 //* REDUX SLICE AND SELECTOR
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -27,7 +28,12 @@ const productsRetriever = createSelector(retrieveProducts, (products) => ({
   products,
 }));
 
-export default function Products() {
+interface ProductsProps {
+  onAdd: (item: CartItem) => void;
+}
+
+export default function Products(props: ProductsProps) {
+  const { onAdd } = props;
   const { setProducts } = actionDispatch(useDispatch());
   const { products } = useSelector(productsRetriever);
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
@@ -57,25 +63,33 @@ export default function Products() {
 
   //* HANDLERS
   const searchCollectionHandler = (collection: ProductCollection) => {
-    productSearch.page = 1;
-    productSearch.productCollection = collection;
-    setProductSearch({ ...productSearch });
+    setProductSearch({
+      ...productSearch,
+      page: 1,
+      productCollection: collection,
+    });
   };
 
   const searchOrderHandler = (order: string) => {
-    productSearch.page = 1;
-    productSearch.order = order;
-    setProductSearch({ ...productSearch });
+    setProductSearch({
+      ...productSearch,
+      page: 1,
+      order: order,
+    });
   };
 
   const searchProductHandler = () => {
-    productSearch.search = searchText;
-    setProductSearch({ ...productSearch });
+    setProductSearch({
+      ...productSearch,
+      search: searchText,
+    });
   };
 
   const paginationHandler = (e: ChangeEvent<any>, value: number) => {
-    productSearch.page = value;
-    setProductSearch({ ...productSearch });
+    setProductSearch({
+      ...productSearch,
+      page: value,
+    });
   };
 
   const chooseDishHandler = (id: string) => {
@@ -244,7 +258,19 @@ export default function Products() {
                         sx={{ backgroundImage: `url(${imagePath})` }}
                       >
                         <div className={"product-sale"}>{sizeVolume}</div>
-                        <Button className={"shop-btn"}>
+                        <Button
+                          className={"shop-btn"}
+                          onClick={(e) => {
+                            onAdd({
+                              _id: product._id,
+                              quantity: 1,
+                              name: product.productName,
+                              price: product.productPrice,
+                              image: product.productImages[0],
+                            });
+                            e.stopPropagation();
+                          }}
+                        >
                           <img
                             src={"/icons/shopping-cart.svg"}
                             style={{ display: "flex" }}
