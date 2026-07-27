@@ -24,9 +24,7 @@ export interface MemberInput {
   memberAddress?: string;
   memberDesc?: string;
   memberImage?: string;
-  memberPoints: number;
-  createdAt: Date;
-  updatedUp: Date;
+  memberPoints?: number;
 }
 
 export interface LoginInput {
